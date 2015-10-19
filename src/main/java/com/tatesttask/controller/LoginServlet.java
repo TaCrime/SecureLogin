@@ -27,8 +27,8 @@ public class LoginServlet extends HttpServlet {
 
         CredentialsVerifier credentialsVerifier = (CredentialsVerifier)ApplicationContextProvider
                 .getApplicationContext().getBean("credentialsVerifier");
-        String login = request.getParameter("login");
-        String password = request.getParameter("password");
+        String login = StringUtils.trim(request.getParameter("login"));
+        String password = StringUtils.trim(request.getParameter("password"));
         if (StringUtils.isNoneBlank(login) && StringUtils.isNoneBlank(password) &&
                 credentialsVerifier.isValidCreadential(login, password)) {
             HttpSession session = request.getSession();
@@ -37,7 +37,7 @@ public class LoginServlet extends HttpServlet {
         } else {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/login.html");
             PrintWriter out = response.getWriter();
-            out.println("<font color=red>Please make sure you enter Login/Pass as \"Login : Password\".</font>\n");
+            out.println("<font color=red>Please make sure you enter proper Login/Pass.</font>\n");
             requestDispatcher.include(request, response);
         }
     }

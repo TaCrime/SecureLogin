@@ -6,11 +6,13 @@
 
     <context:annotation-config/>
     <bean id="credentialsService" class="com.tatesttask.service.impl.CredentialsServiceImpl"></bean>
+    <bean id="passwordStrengthService" class="com.tatesttask.service.impl.PasswordStrengthServiceImpl"></bean>
     <bean id="credentialsVerifier" class="com.tatesttask.service.impl.CredentialsVerifierImpl">
         <property name="credentialsService" ref="credentialsService"></property>
     </bean>
     <bean id="registerService" class="com.tatesttask.service.impl.RegisterServiceImpl">
         <property name="credentialsService" ref="credentialsService"></property>
+        <property name="passwordStrengthService" ref="passwordStrengthService"></property>
     </bean>
 
 

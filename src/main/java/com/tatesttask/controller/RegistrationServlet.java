@@ -1,6 +1,7 @@
 package com.tatesttask.controller;
 
 import com.tatesttask.model.Credential;
+import com.tatesttask.service.CredentialsVerifier;
 import com.tatesttask.service.RegisterService;
 import com.tatesttask.service.impl.RegisterServiceImpl;
 import com.tatesttask.util.ApplicationContextProvider;
@@ -39,13 +40,7 @@ public class RegistrationServlet extends HttpServlet {
     }
 
     private String tryToRegister(String login, String password) throws Exception {
-        if (StringUtils.isBlank(login)) {
-            throw new Exception("Empty login");
-        }
-        if (StringUtils.isBlank(password)) {
-            throw new Exception("Empty password");
-        }
-        Credential credential = new Credential(login, password);
+        Credential credential = new Credential(StringUtils.trim(login), StringUtils.trim(password));
         boolean result = registerService.register(credential);
         return buildHTMLResponse(result);
     }
