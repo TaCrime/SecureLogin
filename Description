@@ -1,0 +1,42 @@
+1. The project 'Secure login' is trying to follow  requirements:
+
+Functional requirements:
+
+ Anonymous users may register by creating a user account from the login page
+ A user account consists of a login name and a password
+ The password of an account is required to be strong
+ Users that login with a valid login name and password are authenticated
+ Only authenticated users may view the “Hello World!” dummy page
+ Visual strength indicator while setting up the password using Ajax
+The algorithm is so complex and business critical that it must be performed server side.
+Non-functional requirements:
+ Provide a readme file
+Make application compile and run with up to three command line commands. Hint words: Maven2, Jetty, H2, and HSQL.
+ Provide a description of the project structure and the decisions made
+ Store the account settings in a SQL database using Hibernate
+ Store passwords securely
+ Multiple browser support
+ Use valid XHTML and CSS
+ Provide unit tests using JUnit
+ Use the principles of test driven development
+ Provide the solution as a Maven project
+ Intuitive user interface
+
+2. To start the project go to project folder and run
+>> mvn jetty:run
+(you should have maven installed and M2_HOME set :)))))
+In browser open url <serverName>:8080
+
+3. The project contains client and server parts which are communicating through servlets;
+This type of communication was selected as most popularly used for generating dynamic content
+on the Web and have native support for HTTP. (c)
+The server side contains servlets which are using services. Services provides (attempt to) business logic.
+JPA provider hibernate as most popular;
+Server: Jetty. DB: hsql. Build manager: apache;
+4. Solutions:
+- Authentication is verified through session attribute "login" which is set after credentials verification.
+If trying to open "Hello World" page without session or this attribute set user is redirected to login page;
+- In addition to requirements the registration of the user with existing login is permitted, although developer
+was not determined enough to give  login column UNIQUE constraint.
+
+
